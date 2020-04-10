@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <img src="./img/icon-music.png" alt="" width="60px" class="logo">
+      <span class="author">__Pjw__</span>
+      <input type="text" v-model='query' class="ipt" @keyup.enter='searchSongs'>
+      <a href="javascript:;"><img src="./img/icon-search.png" alt="" width="24px" @click='searchSongs'></a>
+
+    </header>
+    <div class="songs">
+      <ul>
+        <li v-for='item in musicList' :key="item.id" v-cloak>
+          <a href="javascript:;" @click='playMusic(item.id)'>
+            <img src="./img/icon-play.png" alt="">
+            <span>{{item.name}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="play-container">
+      <div class="musicPic-container" :class='flag? "playing" : "pausing"'>
+        <img :src="musicPic" alt="" width="400px">
+      </div>
+      <audio :src="musicUrl" @play='play' @pause='pause' class="audio" autoplay controls loop></audio>
+    </div>
+    <div class="message-board">
+      <p>热门留言</p>
+      <ul>
+        <li v-for='item in comments' :key='item.commentId' class="userComment" v-cloak>
+          <img :src="item.user.avatarUrl" alt="" width="40px">
+          <span> {{item.user.nickname}} </span>
+          <p> {{item.content}} </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="./js/get-rotate.js"></script>
+  <script src="./js/main.js"></script>
+  <script>
+    console.log('Hello World');
+    console.log('Made By Pjw——Pjw');
+  </script>
+
+</body>
+
+</html>
